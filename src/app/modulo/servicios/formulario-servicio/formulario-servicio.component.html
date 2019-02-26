@@ -1,0 +1,32 @@
+<div class="card mb-3">
+	<form class="col-12" (ngSubmit)="grabar()" [formGroup]="grupo">
+		<div class="card-body">
+			<h5 class="card-title">Servicio</h5>
+			<div class="form-group">
+				<label>Nombre</label>
+				<input type="text" class="form-control" name="titulo" formControlName="titulo">
+				<span *ngIf="grupo.get('titulo').invalid && grupo.get('titulo').touched">campo requerido</span>
+			</div>
+			<div class="form-group">
+				<label>Descripción</label>
+				<input type="text" placeholder="Descripción" name="descripcion" class="form-control"
+					formControlName="descripcion">
+				<span *ngIf="grupo.get('descripcion').invalid && grupo.get('descripcion').touched">campo
+					requerido</span>
+			</div>
+			<div class="form-group">
+				<label>Categorías</label>
+				<select multiple name="categorias" id="" class="form-control" formControlName="categorias">
+					<option value="autos">Autos</option>
+					<option value="salud">Salud</option>
+					<option value="hogar">Hogar</option>
+				</select>
+				<span *ngIf="grupo.get('categorias').invalid && grupo.get('categorias').touched">campo requerido</span>
+			</div>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-outline-success mr-4" [disabled]="!grupo.valid || grabando">Grabar</button>
+			<button class="btn btn-outline-danger" type="button" (click)="cancelar()">Cancelar</button>
+		</div>
+	</form>
+</div>
